@@ -12,6 +12,7 @@ test -x "/opt/ros/${ROS_DISTRO}/lib/xgc2_cerlab_uav_simulator/world_generator.py
 test -f "/opt/ros/${ROS_DISTRO}/share/xgc2_cerlab_uav_simulator/plugins/libquadcopterPlugin.so"
 test -f "/opt/ros/${ROS_DISTRO}/share/xgc2_cerlab_uav_simulator/plugins/libobstaclePathPlugin.so"
 test -f "/opt/ros/${ROS_DISTRO}/share/xgc2_cerlab_uav_simulator/plugins/liblivox_laser.so"
+test -f "/opt/ros/${ROS_DISTRO}/share/xgc2_cerlab_uav_simulator/plugins/libRayPlugin.so"
 test -f "/opt/ros/${ROS_DISTRO}/share/xgc2_cerlab_uav_simulator/worlds/generated_env/generated_env.world"
 test -f "/opt/ros/${ROS_DISTRO}/share/xgc2_cerlab_uav_simulator/models/corridor/model.sdf"
 test -f "/opt/ros/${ROS_DISTRO}/share/xgc2_cerlab_uav_simulator/urdf/quadcopter_lidar.urdf"

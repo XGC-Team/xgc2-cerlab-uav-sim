@@ -28,6 +28,18 @@ find_package(Boost REQUIRED COMPONENTS system)
 find_package(Protobuf REQUIRED)
 find_package(PCL REQUIRED)
 
+find_library(GAZEBO_RAY_PLUGIN_LIBRARY
+  NAMES RayPlugin libRayPlugin.so
+  PATHS ${catkin_LIBRARY_DIRS} ${GAZEBO_LIBRARY_DIRS}
+  NO_DEFAULT_PATH
+)
+if(NOT GAZEBO_RAY_PLUGIN_LIBRARY)
+  find_library(GAZEBO_RAY_PLUGIN_LIBRARY NAMES RayPlugin libRayPlugin.so)
+endif()
+if(NOT GAZEBO_RAY_PLUGIN_LIBRARY)
+  message(FATAL_ERROR "RayPlugin library is required by livox_laser")
+endif()
+
 
 set(CMAKE_AUTOUIC ON)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
@@ -160,6 +172,7 @@ add_library(quadcopterPlugin SHARED
 add_library(obstaclePathPlugin src/obstaclePathPlugin.cc)
 
 add_library(livox_laser SHARED src/livox_lidar/livox_points_plugin.cpp src/livox_lidar/livox_ode_multiray_shape.cpp)
+set_target_properties(livox_laser PROPERTIES INSTALL_RPATH "\$ORIGIN")
 
 # add_library(livox_laser_gpu SHARED src/livox_lidar/livox_gpu_points_plugin.cpp)
 
@@ -214,7 +227,7 @@ target_link_libraries(obstaclePathPlugin
    ${GAZEBO_LIBRARIES}
 )
 
-target_link_libraries(livox_laser ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} RayPlugin ${PROTOBUF_LIBRARIES})
+target_link_libraries(livox_laser ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} ${GAZEBO_RAY_PLUGIN_LIBRARY} ${PROTOBUF_LIBRARIES})
 
 # target_link_libraries(livox_laser_gpu ${catkin_LIBRARIES} GpuRayPlugin)
 
@@ -247,6 +260,10 @@ install(TARGETS quadcopterPlugin obstaclePathPlugin livox_laser
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/plugins
   LIBRARY DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/plugins
   RUNTIME DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/plugins
+)
+
+install(FILES ${GAZEBO_RAY_PLUGIN_LIBRARY}
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/plugins
 )
 
 ## Mark cpp header files for installation
