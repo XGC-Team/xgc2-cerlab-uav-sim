@@ -19,18 +19,23 @@ class worldGenerator:
         static_models, points = self.load_static_obstacles()
         dynamic_models = self.load_dyanmic_obtacles()
         world_models = self.create_world_file(static_models+dynamic_models)
-        curr_path = os.path.dirname(os.path.abspath(__file__))
-        parent_path = os.path.dirname(curr_path)
-        os.makedirs(os.path.join(parent_path, "worlds/generated_env"), exist_ok=True)
-        with open(os.path.join(parent_path, "worlds/generated_env/generated_env.world"), "w") as f:
+        output_dir = os.environ.get(
+            "XGC2_CERLAB_GENERATED_WORLD_DIR",
+            "/tmp/xgc2_cerlab_uav_simulator/generated_env",
+        )
+        os.makedirs(output_dir, exist_ok=True)
+        with open(os.path.join(output_dir, "generated_env.world"), "w") as f:
             f.write(world_models)
         if (self.cfg["map"]["generate_map"]):
             if (self.cfg["map"]["save_directory"] == "default"):
-                self.create_pcd(points, os.path.join(parent_path, "worlds/generated_env/generated_env.pcd"))
+                self.create_pcd(points, os.path.join(output_dir, "generated_env.pcd"))
             else:
                 self.create_pcd(points, self.cfg["map"]["save_directory"])
 
     def create_pcd(self, points, filename):
+        output_dir = os.path.dirname(filename)
+        if output_dir:
+            os.makedirs(output_dir, exist_ok=True)
         header = (
             "# .PCD v0.7 - Point Cloud Data file format\n"
             "VERSION 0.7\n"
@@ -293,7 +298,7 @@ class worldGenerator:
     def create_world_file(self, models):
         # print(models)
         # models = "\n".join(models)
-        world_model = f"""
+        world_model = f"""<?xml version="1.0"?>
             <sdf version='1.7'>
             <world name='default'>
                 <light name='sun' type='directional'>

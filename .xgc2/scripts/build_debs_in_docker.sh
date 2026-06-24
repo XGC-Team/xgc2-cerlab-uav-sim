@@ -49,9 +49,12 @@ docker run --rm \
 
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
+    apt-get install -y --no-install-recommends ca-certificates
+    echo "deb [trusted=yes arch=$(dpkg --print-architecture)] https://xgc2.apt.xiaokang.ink focal main" \
+      > /etc/apt/sources.list.d/xgc2.list
+    apt-get update
     apt-get install -y --no-install-recommends \
       build-essential \
-      ca-certificates \
       cmake \
       dpkg-dev \
       fakeroot \
@@ -83,7 +86,8 @@ docker run --rm \
       ros-noetic-std-msgs \
       ros-noetic-tf2-geometry-msgs \
       ros-noetic-tf2-ros \
-      ros-noetic-topic-tools
+      ros-noetic-topic-tools \
+      ros-noetic-xgc2-gazebo-sim-worlds
 
     rm -rf /workspace/work/src /workspace/work/build /workspace/work/devel /workspace/work/install-root
     mkdir -p /workspace/work/src/xgc2_cerlab_uav_simulator

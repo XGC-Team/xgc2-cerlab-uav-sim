@@ -1,9 +1,9 @@
 schema: xgc2.product.v1
 id: xgc2-gazebo-sim-cerlab-uav
 name: XGC2 CERLAB UAV Simulator
-version: 1.0.0-1
+version: 1.0.1-1
 kind: ros1-apt
-summary: CERLAB and Intent-MPC Gazebo Classic UAV simulator, models, worlds, and plugins for ROS Noetic.
+summary: CERLAB and Intent-MPC Gazebo Classic UAV simulator and plugins for ROS Noetic.
 
 ros:
   distro: noetic
@@ -22,6 +22,7 @@ apt:
     - ros-noetic-mavros
     - ros-noetic-mavros-extras
     - ros-noetic-topic-tools
+    - ros-noetic-xgc2-gazebo-sim-worlds (>= 1.0.21-1)
     - python3-numpy
     - python3-yaml
 

@@ -272,7 +272,7 @@ install(DIRECTORY include/${PROJECT_NAME}/
 )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
-install(DIRECTORY launch models rviz scripts urdf worlds
+install(DIRECTORY launch rviz scripts urdf
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 

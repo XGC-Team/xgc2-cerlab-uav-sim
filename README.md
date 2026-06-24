@@ -119,7 +119,7 @@ python3 generate_random_world.py
 The parameter configuration file is in ```xgc2_cerlab_uav_simulator/scripts/world_generator.yaml``` 
 
 
-By default, the generated world will be saved under ```xgc2_cerlab_uav_simulator/worlds/generated_env/generated_env.world```. Please add this to ```start.launch``` file to launch it for experiments.
+By default, the generated world will be saved under ```/tmp/xgc2_cerlab_uav_simulator/generated_env/generated_env.world```. Pass that file as the `world_name` launch argument when testing generated worlds.
 The example generated environment is visualized:
 
 
@@ -133,5 +133,4 @@ The example of the generated environment with the generated map and dynamic obst
 
 
 https://github.com/user-attachments/assets/22b5e256-2eb1-423c-b000-9d54690603b1
-
 
