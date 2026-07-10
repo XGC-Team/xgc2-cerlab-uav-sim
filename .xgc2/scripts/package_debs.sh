@@ -82,7 +82,7 @@ Section: misc
 Priority: optional
 Architecture: ${ARCH}
 Maintainer: XGC2 <apt@example.com>
-Depends: libgazebo11, libprotobuf17, libqt5widgets5, libpcl-common1.10, libpcl-io1.10, python3-numpy, python3-yaml, ros-${ROS_DISTRO}-gazebo-plugins, ros-${ROS_DISTRO}-gazebo-ros, ros-${ROS_DISTRO}-geometry-msgs, ros-${ROS_DISTRO}-mavros, ros-${ROS_DISTRO}-mavros-extras, ros-${ROS_DISTRO}-message-runtime, ros-${ROS_DISTRO}-pcl-conversions, ros-${ROS_DISTRO}-roscpp, ros-${ROS_DISTRO}-roslaunch, ros-${ROS_DISTRO}-roslib, ros-${ROS_DISTRO}-rospy, ros-${ROS_DISTRO}-sensor-msgs, ros-${ROS_DISTRO}-std-msgs, ros-${ROS_DISTRO}-tf2-geometry-msgs, ros-${ROS_DISTRO}-tf2-ros, ros-${ROS_DISTRO}-topic-tools, ros-${ROS_DISTRO}-xgc2-gazebo-sim-worlds (>= 1.0.21-1)
+Depends: libgazebo11, libprotobuf17, libqt5widgets5, libpcl-common1.10, libpcl-io1.10, python3-numpy, python3-yaml, ros-${ROS_DISTRO}-gazebo-plugins, ros-${ROS_DISTRO}-gazebo-ros, ros-${ROS_DISTRO}-geometry-msgs, ros-${ROS_DISTRO}-mavros, ros-${ROS_DISTRO}-mavros-extras, ros-${ROS_DISTRO}-message-runtime, ros-${ROS_DISTRO}-pcl-conversions, ros-${ROS_DISTRO}-roscpp, ros-${ROS_DISTRO}-roslaunch, ros-${ROS_DISTRO}-roslib, ros-${ROS_DISTRO}-rospy, ros-${ROS_DISTRO}-sensor-msgs, ros-${ROS_DISTRO}-std-msgs, ros-${ROS_DISTRO}-tf2-geometry-msgs, ros-${ROS_DISTRO}-tf2-ros, ros-${ROS_DISTRO}-topic-tools, ros-${ROS_DISTRO}-xgc2-gazebo-sim-worlds (>= 1.1.0-10)
 Description: CERLAB and Intent-MPC UAV Gazebo simulator for XGC2
 EOF
 printf 'xgc2-gazebo-sim-cerlab-uav package\n' > "${pkg_root}/usr/share/doc/${PACKAGE}/README"
