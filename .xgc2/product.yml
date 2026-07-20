@@ -39,3 +39,6 @@ ownership:
   - /opt/ros/noetic/share/xgc2_cerlab_uav_simulator
   - /opt/ros/noetic/include/xgc2_cerlab_uav_simulator
   - /opt/ros/noetic/lib/xgc2_cerlab_uav_simulator
+release:
+  dependency_policy:
+    xgc2-gazebo-sim-worlds: verify
