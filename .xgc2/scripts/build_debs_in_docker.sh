@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
-DOCKER_IMAGE="${DOCKER_IMAGE:-ros:noetic-ros-base-focal}"
+DOCKER_IMAGE="${DOCKER_IMAGE:-ghcr.io/xgc-team/xgc2-images/xgc2-build-focal-full-noetic:1.0.0}"
 WORK_DIR="${WORK_DIR:-${REPO_ROOT}/.work/docker}"
 OUTPUT_DIR="${OUTPUT_DIR:-${REPO_ROOT}/debs}"
 INSTALL_CHECK="${INSTALL_CHECK:-true}"
@@ -49,8 +49,6 @@ docker run --rm \
     set -euo pipefail
 
     export DEBIAN_FRONTEND=noninteractive
-    apt-get update
-    apt-get install -y --no-install-recommends ca-certificates
     echo "deb [trusted=yes arch=$(dpkg --print-architecture)] https://xgc2.apt.xiaokang.ink focal main" \
       > /etc/apt/sources.list.d/xgc2.list
 
@@ -61,39 +59,6 @@ docker run --rm \
       fi
     apt-get update
     apt-get install -y --no-install-recommends \
-      build-essential \
-      cmake \
-      dpkg-dev \
-      fakeroot \
-      file \
-      git \
-      libboost-dev \
-      libgazebo11-dev \
-      libpcl-dev \
-      libprotobuf-dev \
-      protobuf-compiler \
-      python3-numpy \
-      python3-yaml \
-      qtbase5-dev \
-      rsync \
-      ros-noetic-gazebo-plugins \
-      ros-noetic-gazebo-ros \
-      ros-noetic-geometry-msgs \
-      ros-noetic-mavros \
-      ros-noetic-mavros-extras \
-      ros-noetic-message-generation \
-      ros-noetic-message-runtime \
-      ros-noetic-pcl-conversions \
-      ros-noetic-roscpp \
-      ros-noetic-roslaunch \
-      ros-noetic-roslib \
-      ros-noetic-rospack \
-      ros-noetic-rospy \
-      ros-noetic-sensor-msgs \
-      ros-noetic-std-msgs \
-      ros-noetic-tf2-geometry-msgs \
-      ros-noetic-tf2-ros \
-      ros-noetic-topic-tools \
       ros-noetic-xgc2-gazebo-sim-worlds
 
     rm -rf /workspace/work/src /workspace/work/build /workspace/work/devel /workspace/work/install-root
